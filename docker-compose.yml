@@ -8,6 +8,8 @@ services:
       - "11434:11434"
     networks:
       - app-network
+    environment:
+      - OLLAMA_MODEL=qwen2.5:0.5b
 
   langchain:
     build:
@@ -23,6 +25,7 @@ services:
     environment:
       - OLLAMA_HOST=ollama
       - OLLAMA_PORT=11434
+      - OLLAMA_MODEL=qwen2.5:0.5b
     command: poetry run python serve.py
 
 networks:

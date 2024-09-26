@@ -7,6 +7,6 @@ ollama serve &
 sleep 5
 
 # Pull the model after the server has started
-ollama pull qwen2.5:0.5b
+ollama pull $OLLAMA_MODEL
 
 wait

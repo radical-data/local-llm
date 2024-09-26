@@ -1,3 +1,4 @@
+import os
 from fastapi import FastAPI
 from langchain_ollama.llms import OllamaLLM
 from langchain_core.prompts import ChatPromptTemplate
@@ -5,7 +6,10 @@ from langchain_core.output_parsers import StrOutputParser
 from langserve import add_routes
 
 # Define the Ollama LLM
-llm = OllamaLLM(model="qwen2.5:0.5b")
+model_name = os.getenv("OLLAMA_MODEL")
+if not model_name:
+    raise EnvironmentError("The OLLAMA_MODEL environment variable is not defined. Please set it to the desired model.")
+llm = OllamaLLM(model=model_name)
 
 # Create prompt template
 system_template = "Translate the following into {language}:"
