@@ -1,6 +1,7 @@
 services:
   ollama:
-    image: ollama/ollama
+    build:
+      context: ./ollama
     volumes:
       - ollama:/root/.ollama
     ports:
