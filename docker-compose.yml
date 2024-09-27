@@ -28,6 +28,17 @@ services:
       - OLLAMA_PORT=11434
     command: poetry run python serve.py
 
+  web:
+    build: ./web
+    ports:
+      - "8080:80"
+    depends_on:
+      - langchain
+    networks:
+      - app-network
+    environment:
+      - VITE_API_HOST=langchain
+
 networks:
   app-network:
 
